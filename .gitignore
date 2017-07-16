@@ -1,0 +1,13 @@
+# os crap
+.DS_Store
+
+# editor files
+.vs
+.vscode
+
+# packages
+/packages-js/*/node_modules
+
+# artifacts
+/packages-net/*/[Bb]in
+/packages-net/*/[Oo]bj

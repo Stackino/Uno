@@ -1,0 +1,52 @@
+{
+  "name": "@stackino/uno",
+  "version": "0.1.0",
+  "description": "Application framework formed from popular packages.",
+  "main": "index.js",
+  "scripts": {
+    "init": "npm install",
+    "dev": "webpack --debug --output-pathinfo --watch --define process.env.NODE_ENV=\"'development'\"",
+    "prod": "webpack --optimize-minimize --define process.env.NODE_ENV=\"'production'\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stackino/Uno.git"
+  },
+  "author": "Lukáš Novotný",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Stackino/Uno/issues"
+  },
+  "homepage": "https://github.com/Stackino/Uno#readme",
+  "devDependencies": {
+    "@types/classnames": "^2.2.0",
+    "@types/core-decorators": "^0.10.32",
+    "@types/prop-types": "^15.5.1",
+    "@types/react": "^15.0.38",
+    "@types/react-dom": "^15.5.1",
+    "@types/webpack-env": "^1.13.0",
+    "css-loader": "^0.28.4",
+    "node-sass": "^4.5.3",
+    "reflect-metadata": "^0.1.10",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "ts-loader": "^2.3.0",
+    "typescript": "^2.4.1",
+    "webpack": "^3.3.0"
+  },
+  "dependencies": {
+    "@uirouter/react": "^0.5.1",
+    "classnames": "^2.2.5",
+    "core-decorators": "^0.19.0",
+    "inversify": "^4.2.0",
+    "inversify-react": "^0.2.0",
+    "mobx": "^3.2.1",
+    "mobx-react": "^4.2.2",
+    "moment": "^2.18.1",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "topbar": "^0.1.3"
+  }
+}

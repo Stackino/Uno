@@ -1,0 +1,32 @@
+﻿:local {
+
+	.container {
+		position: fixed;
+		background-color: #0000AA;
+		color: white;
+		padding: 5em;
+		top: 0;
+		left: 0;
+		font-family: monospace;
+		width: 100%;
+		height: 100vh;
+		text-align: left;
+		overflow: auto;
+		z-index: 999999;
+	}
+
+	.title {
+		font-family: monospace;
+		color: white;
+	}
+
+	.data, .stack {
+		color: white;
+		text-align: left;
+
+		&::-webkit-scrollbar {
+			width: 0px;
+			background: transparent;
+		}
+	}
+}

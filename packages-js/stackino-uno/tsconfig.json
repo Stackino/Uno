@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "lib": [
+            "dom",
+            "es2015",
+            "es2016"
+        ],
+        "types": [
+            "reflect-metadata",
+            "webpack-env"
+        ],
+        "noImplicitAny": true,
+        "noUnusedLocals": true,
+        "strictNullChecks": true,
+        "skipLibCheck": true,
+        "jsx": "react",
+        "sourceMap": true,
+        "declaration": true,
+        "declarationDir": "../types",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
+    },
+    "include": [
+        "./src/**/*.ts",
+        "./src/**/*.tsx"
+    ]
+}
