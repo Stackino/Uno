@@ -7,6 +7,7 @@
     "init": "npm install",
     "dev": "webpack --debug --output-pathinfo --watch --define process.env.NODE_ENV=\"'development'\"",
     "prod": "webpack --optimize-minimize --define process.env.NODE_ENV=\"'production'\"",
+    "prepublishOnly": "npm run prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
