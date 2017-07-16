@@ -1,3 +1,4 @@
+import { JsonRpcError } from './json-rpc-error';
 export interface JsonRpcErrorData {
     code: number;
     message: string;
@@ -30,4 +31,5 @@ export declare class JsonRpcClient {
         [key: string]: any;
     } | any[]): Promise<any>;
 }
+export { JsonRpcError };
 export default JsonRpcClient;

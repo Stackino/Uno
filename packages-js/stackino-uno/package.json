@@ -1,12 +1,14 @@
 {
   "name": "@stackino/uno",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Application framework formed from popular packages.",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "module": "./es/index.js",
+  "typings": "./types/index.d.ts",
   "scripts": {
     "init": "npm install",
-    "dev": "webpack --debug --output-pathinfo --watch --define process.env.NODE_ENV=\"'development'\"",
-    "prod": "webpack --optimize-minimize --define process.env.NODE_ENV=\"'production'\"",
+    "dev": "webpack --debug --output-pathinfo --watch",
+    "prod": "tsc && webpack",
     "prepublishOnly": "npm run prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

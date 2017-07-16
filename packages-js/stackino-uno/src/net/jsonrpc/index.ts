@@ -157,4 +157,5 @@ export class JsonRpcClient {
 	}
 }
 
+export { JsonRpcError };
 export default JsonRpcClient;

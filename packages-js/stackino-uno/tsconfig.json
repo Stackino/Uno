@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        "module": "esnext",
+        "moduleResolution": "node",
         "target": "es5",
         "lib": [
             "dom",
@@ -18,9 +19,10 @@
         "jsx": "react",
         "sourceMap": true,
         "declaration": true,
-        "declarationDir": "../types",
+        "declarationDir": "./types",
         "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
+        "emitDecoratorMetadata": true,
+        "outDir": "./es"
     },
     "include": [
         "./src/**/*.ts",
