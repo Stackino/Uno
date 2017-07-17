@@ -7,8 +7,8 @@
   "typings": "./types/index.d.ts",
   "scripts": {
     "init": "npm install",
-    "dev": "webpack --debug --output-pathinfo --watch",
-    "prod": "tsc && webpack",
+    "dev": "n-clean ./dist ./es && webpack --debug --output-pathinfo --watch",
+    "prod": "n-clean ./dist ./es && tsc && n-copy --source ./src --destination ./es **/*.scss && webpack",
     "prepublishOnly": "npm run prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -31,6 +31,7 @@
     "@types/webpack-env": "^1.13.0",
     "css-loader": "^0.28.4",
     "node-sass": "^4.5.3",
+    "npm-build-tools": "^2.2.5",
     "reflect-metadata": "^0.1.10",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
