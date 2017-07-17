@@ -1,5 +1,5 @@
 ﻿import { getUid } from '../../tools';
-import * as moment from 'moment';
+import { isMoment } from 'moment';
 import { JsonRpcError } from './json-rpc-error';
 
 export interface JsonRpcErrorData {
@@ -52,7 +52,7 @@ function attachFiles(formData: FormData, key: string | null, data: any): any {
 					result.push(item);
 				}
 				return result;
-			} else if (moment.isMoment(data)) {
+			} else if (isMoment(data)) {
 				return data.format();
 			} else if (File && data instanceof File) {
 				if (!key) {

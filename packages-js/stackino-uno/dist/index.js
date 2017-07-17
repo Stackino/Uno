@@ -1319,7 +1319,7 @@ function attachFiles(formData, key, data) {
                 }
                 return result;
             }
-            else if (__WEBPACK_IMPORTED_MODULE_2_moment__["isMoment"](data)) {
+            else if (Object(__WEBPACK_IMPORTED_MODULE_2_moment__["isMoment"])(data)) {
                 return data.format();
             }
             else if (File && data instanceof File) {

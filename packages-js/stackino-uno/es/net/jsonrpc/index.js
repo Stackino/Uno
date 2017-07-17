@@ -1,6 +1,6 @@
 import * as tslib_1 from "tslib";
 import { getUid } from '../../tools';
-import * as moment from 'moment';
+import { isMoment } from 'moment';
 import { JsonRpcError } from './json-rpc-error';
 function attachFiles(formData, key, data) {
     var type = typeof data;
@@ -28,7 +28,7 @@ function attachFiles(formData, key, data) {
                 }
                 return result;
             }
-            else if (moment.isMoment(data)) {
+            else if (isMoment(data)) {
                 return data.format();
             }
             else if (File && data instanceof File) {
