@@ -24,7 +24,7 @@ function detectScrollbarWidth() {
 	};
 }
 
-function getScrollbarWidth() {
+export function getScrollbarWidth() {
 	if (scrollbarWidth === null) {
 		scrollbarWidth = detectScrollbarWidth();
 	}
@@ -32,4 +32,3 @@ function getScrollbarWidth() {
 }
 
 export default getScrollbarWidth;
-export { getScrollbarWidth };

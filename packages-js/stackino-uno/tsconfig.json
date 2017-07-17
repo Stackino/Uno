@@ -16,6 +16,7 @@
         "noUnusedLocals": true,
         "strictNullChecks": true,
         "skipLibCheck": true,
+        "importHelpers": true,
         "jsx": "react",
         "sourceMap": true,
         "declaration": true,

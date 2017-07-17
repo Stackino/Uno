@@ -1,4 +1,4 @@
-﻿class JsonRpcError extends Error {
+﻿export class JsonRpcError extends Error {
 
 	/// <summary>
 	/// Invalid JSON was received by the server.
@@ -55,4 +55,3 @@
 }
 
 export default JsonRpcError;
-export { JsonRpcError };

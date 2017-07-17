@@ -1,9 +1,8 @@
 ﻿import { ValidationLevel } from './validation-level';
 
-interface ValidationMessage {
+export interface ValidationMessage {
 	level: ValidationLevel;
 	message: string;
 }
 
 export default ValidationMessage;
-export { ValidationMessage };

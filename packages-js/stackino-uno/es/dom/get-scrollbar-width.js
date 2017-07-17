@@ -11,12 +11,11 @@ function detectScrollbarWidth() {
         horizontal: horizontal,
     };
 }
-function getScrollbarWidth() {
+export function getScrollbarWidth() {
     if (scrollbarWidth === null) {
         scrollbarWidth = detectScrollbarWidth();
     }
     return scrollbarWidth;
 }
 export default getScrollbarWidth;
-export { getScrollbarWidth };
 //# sourceMappingURL=get-scrollbar-width.js.map

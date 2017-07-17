@@ -29,6 +29,6 @@ var TopBar = (function () {
     };
     return TopBar;
 }());
-export default TopBar;
 export { TopBar };
+export default TopBar;
 //# sourceMappingURL=index.js.map

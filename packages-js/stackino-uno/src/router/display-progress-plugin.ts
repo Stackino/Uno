@@ -1,16 +1,16 @@
 ﻿import { Transition, UIRouter, UIRouterPluginBase } from '@uirouter/core';
 import { TopBar } from '../ui/topbar';
 
-interface DisplayProgressHandler {
+export interface DisplayProgressHandler {
 	show(): void;
 	hide(): void;
 }
 
-interface DisplayProgressPluginOptions {
+export interface DisplayProgressPluginOptions {
 	handler: DisplayProgressHandler;
 }
 
-class DisplayProgressPlugin implements UIRouterPluginBase {
+export class DisplayProgressPlugin implements UIRouterPluginBase {
 	constructor(router: UIRouter, options: DisplayProgressPluginOptions) {
 		const { transitionService } = router;
 
@@ -42,5 +42,4 @@ class DisplayProgressPlugin implements UIRouterPluginBase {
 	}
 }
 
-export { DisplayProgressHandler, DisplayProgressPluginOptions, DisplayProgressPlugin };
 export default DisplayProgressPlugin;

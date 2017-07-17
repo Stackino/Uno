@@ -1,8 +1,6 @@
 /// <reference types="react" />
 import * as React from 'react';
-export interface Newable<TStore> {
-    new (...args: any[]): TStore;
-}
+import { Newable } from "../core/newable";
 export interface Store {
     enter(): Promise<any>;
 }

@@ -1,4 +1,3 @@
-import * as bsod from './bsod';
-import * as topbar from './topbar';
-export { bsod, topbar };
+export * from './bsod';
+export * from './topbar';
 //# sourceMappingURL=index.js.map

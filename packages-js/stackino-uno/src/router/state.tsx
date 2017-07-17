@@ -3,10 +3,7 @@ import { ReactStateDeclaration, Resolvable, StateObject, Transition } from '@uir
 import * as globals from '../globals';
 import { Container } from 'inversify';
 import { Provider } from 'inversify-react';
-
-export interface Newable<TStore> {
-	new (...args: any[]): TStore;
-}
+import { Newable } from "../core/newable";
 
 export interface Store {
 	enter(): Promise<any>;

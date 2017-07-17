@@ -6,7 +6,7 @@ function createStyleElement() {
     document.head.appendChild(style);
     return style;
 }
-function injectCssRule(rule) {
+export function injectCssRule(rule) {
     if (styleElement === null || styleSheet === null) {
         styleElement = createStyleElement();
         styleSheet = styleElement.sheet;
@@ -14,5 +14,4 @@ function injectCssRule(rule) {
     styleSheet.insertRule(rule, styleSheet.cssRules.length);
 }
 export default injectCssRule;
-export { injectCssRule };
 //# sourceMappingURL=inject-css-rule.js.map

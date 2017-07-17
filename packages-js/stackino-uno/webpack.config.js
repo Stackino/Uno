@@ -92,6 +92,11 @@ module.exports = {
             commonjs: 'topbar',
             commonjs2: 'topbar',
             amd: 'topbar'
+        },
+        'tslib': {
+            commonjs: 'tslib',
+            commonjs2: 'tslib',
+            amd: 'tslib'
         }
     },
 

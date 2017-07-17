@@ -8,7 +8,7 @@ function createStyleElement() {
 	return style;
 }
 
-function injectCssRule(rule: string) {
+export function injectCssRule(rule: string) {
 	if (styleElement === null || styleSheet === null) {
 		styleElement = createStyleElement();
 		styleSheet = styleElement.sheet as CSSStyleSheet;
@@ -18,4 +18,3 @@ function injectCssRule(rule: string) {
 }
 
 export default injectCssRule;
-export { injectCssRule };

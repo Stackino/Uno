@@ -1,4 +1,4 @@
 import { Container } from 'inversify';
-var container = new Container();
-export { container };
+export var container = new Container();
+export default container;
 //# sourceMappingURL=container.js.map

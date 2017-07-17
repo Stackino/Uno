@@ -1,4 +1,4 @@
-﻿class Page<T> extends Array<T> {
+﻿export class Page<T> extends Array<T> {
 	constructor(data: T[], number: number, count: number) {
 		super();
 
@@ -13,4 +13,3 @@
 }
 
 export default Page;
-export { Page };

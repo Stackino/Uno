@@ -1,16 +1,16 @@
 ﻿import { Rejection, RejectType, UIRouter, UIRouterPluginBase } from '@uirouter/core';
 import { Bsod } from '../ui/bsod';
 
-interface DisplayErrorHandler {
+export interface DisplayErrorHandler {
 	show(title: string, error: Error | string): void;
 	hide(): void;
 }
 
-interface DisplayErrorPluginOptions {
+export interface DisplayErrorPluginOptions {
 	handler: DisplayErrorHandler;
 }
 
-class DisplayErrorPlugin implements UIRouterPluginBase {
+export class DisplayErrorPlugin implements UIRouterPluginBase {
 	constructor(router: UIRouter, options: DisplayErrorPluginOptions) {
 		const handler = (options && options.handler) || Bsod;
 
@@ -49,5 +49,4 @@ class DisplayErrorPlugin implements UIRouterPluginBase {
 	}
 }
 
-export { DisplayErrorHandler, DisplayErrorPluginOptions, DisplayErrorPlugin };
 export default DisplayErrorPlugin;

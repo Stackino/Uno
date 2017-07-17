@@ -3,7 +3,7 @@
 let depth = 0;
 
 // topbar
-class TopBar {
+export class TopBar {
 	private static hideInternal() {
 		if (depth > 0) {
 			return;
@@ -37,4 +37,3 @@ class TopBar {
 }
 
 export default TopBar;
-export { TopBar };

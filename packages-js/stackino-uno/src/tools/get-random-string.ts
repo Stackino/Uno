@@ -1,6 +1,6 @@
 ﻿declare var global: Window;
 
-function getRandomString(length = 64, characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-') {
+export function getRandomString(length = 64, characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-') {
 	let result = '';
 
 	let array: Uint8Array | number[];
@@ -23,4 +23,3 @@ function getRandomString(length = 64, characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZab
 }
 
 export default getRandomString;
-export { getRandomString };

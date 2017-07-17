@@ -1,3 +1,1 @@
-import * as jsonrpc from './jsonrpc';
-
-export { jsonrpc };
+export * from './jsonrpc';

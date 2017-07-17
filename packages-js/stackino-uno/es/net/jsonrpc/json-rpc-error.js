@@ -1,15 +1,6 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
+import * as tslib_1 from "tslib";
 var JsonRpcError = (function (_super) {
-    __extends(JsonRpcError, _super);
+    tslib_1.__extends(JsonRpcError, _super);
     function JsonRpcError(code, message, data) {
         var _this = _super.call(this, message) || this;
         Object.setPrototypeOf(_this, JsonRpcError.prototype);
@@ -54,6 +45,6 @@ var JsonRpcError = (function (_super) {
     JsonRpcError.FORBIDDEN = -32002;
     return JsonRpcError;
 }(Error));
-export default JsonRpcError;
 export { JsonRpcError };
+export default JsonRpcError;
 //# sourceMappingURL=json-rpc-error.js.map

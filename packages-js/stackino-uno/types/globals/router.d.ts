@@ -1,3 +1,3 @@
 import { UIRouterReact } from '@uirouter/react';
-declare const router: UIRouterReact;
-export { router };
+export declare const router: UIRouterReact;
+export default router;

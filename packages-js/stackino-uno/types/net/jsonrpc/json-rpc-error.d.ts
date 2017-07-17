@@ -1,4 +1,4 @@
-declare class JsonRpcError extends Error {
+export declare class JsonRpcError extends Error {
     static readonly PARSE_ERROR: number;
     static readonly INVALID_REQUEST: number;
     static readonly METHOD_NOT_FOUND: number;
@@ -13,4 +13,3 @@ declare class JsonRpcError extends Error {
     data: any;
 }
 export default JsonRpcError;
-export { JsonRpcError };

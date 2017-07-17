@@ -1,4 +1,4 @@
-function getRandomString(length, characters) {
+export function getRandomString(length, characters) {
     if (length === void 0) { length = 64; }
     if (characters === void 0) { characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-'; }
     var result = '';
@@ -19,5 +19,4 @@ function getRandomString(length, characters) {
     return result;
 }
 export default getRandomString;
-export { getRandomString };
 //# sourceMappingURL=get-random-string.js.map
