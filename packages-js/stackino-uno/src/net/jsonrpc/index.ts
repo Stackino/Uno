@@ -108,9 +108,9 @@ export class JsonRpcClient {
 	public readonly responseFilters: ResponseFilter[] = [];
 
 	async processRequestAsync(rpcRequest: JsonRpcRequest) {
-		const headers: { [name: string]: string } = {};
+		const headers = new Headers();
 		if (this.authorization) {
-			headers.Authorization = this.authorization;
+			headers.append("Authorization", this.authorization);
 		}
 
 		const httpRequestBody = buildHttpRequestBody(rpcRequest);
