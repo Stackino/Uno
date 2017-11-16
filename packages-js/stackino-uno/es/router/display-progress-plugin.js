@@ -1,5 +1,5 @@
 import { TopBar } from '../ui/topbar';
-var DisplayProgressPlugin = (function () {
+var DisplayProgressPlugin = /** @class */ (function () {
     function DisplayProgressPlugin(router, options) {
         this.name = 'DisplayProgressPlugin';
         // tslint:disable-next-line:ban-types

@@ -133,7 +133,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var styles = __webpack_require__(20);
 var container;
-var Bsod = (function () {
+var Bsod = /** @class */ (function () {
     function Bsod() {
     }
     Bsod.show = function (title, error, options) {
@@ -201,7 +201,7 @@ var Bsod = (function () {
 var topbarImpl = __webpack_require__(26);
 var depth = 0;
 // topbar
-var TopBar = (function () {
+var TopBar = /** @class */ (function () {
     function TopBar() {
     }
     TopBar.hideInternal = function () {
@@ -257,7 +257,7 @@ var ValidationLevel;
 (function (ValidationLevel) {
     ValidationLevel[ValidationLevel["warning"] = 100] = "warning";
     ValidationLevel[ValidationLevel["error"] = 200] = "error";
-})(ValidationLevel = ValidationLevel || (ValidationLevel = {}));
+})(ValidationLevel || (ValidationLevel = {}));
 /* unused harmony default export */ var _unused_webpack_default_export = (ValidationLevel);
 
 
@@ -314,7 +314,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_tslib__);
 
-var Page = (function (_super) {
+var Page = /** @class */ (function (_super) {
     __WEBPACK_IMPORTED_MODULE_0_tslib__["__extends"](Page, _super);
     function Page(data, number, count) {
         var _this = _super.call(this) || this;
@@ -438,7 +438,7 @@ router.plugin(__WEBPACK_IMPORTED_MODULE_1__router__["DisplayErrorPlugin"]);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ui_bsod__ = __webpack_require__(5);
 
 
-var DisplayErrorPlugin = (function () {
+var DisplayErrorPlugin = /** @class */ (function () {
     function DisplayErrorPlugin(router, options) {
         this.name = 'DisplayErrorPlugin';
         // tslint:disable-next-line:ban-types
@@ -501,7 +501,7 @@ if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
 
-var options = {}
+var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
 var update = __webpack_require__(23)(content, options);
@@ -655,9 +655,19 @@ var getElement = (function (fn) {
 
 	return function(selector) {
 		if (typeof memo[selector] === "undefined") {
-			memo[selector] = fn.call(this, selector);
+			var styleTarget = fn.call(this, selector);
+			// Special case to return head of iframe instead of iframe itself
+			if (styleTarget instanceof window.HTMLIFrameElement) {
+				try {
+					// This will throw an exception if access to iframe is blocked
+					// due to cross-origin restrictions
+					styleTarget = styleTarget.contentDocument.head;
+				} catch(e) {
+					styleTarget = null;
+				}
+			}
+			memo[selector] = styleTarget;
 		}
-
 		return memo[selector]
 	};
 })(function (target) {
@@ -787,8 +797,11 @@ function insertStyleElement (options, style) {
 		stylesInsertedAtTop.push(style);
 	} else if (options.insertAt === "bottom") {
 		target.appendChild(style);
+	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
+		var nextSibling = getElement(options.insertInto + " " + options.insertAt.before);
+		target.insertBefore(style, nextSibling);
 	} else {
-		throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
 	}
 }
 
@@ -1083,7 +1096,7 @@ module.exports = function (css) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DisplayProgressPlugin; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ui_topbar__ = __webpack_require__(6);
 
-var DisplayProgressPlugin = (function () {
+var DisplayProgressPlugin = /** @class */ (function () {
     function DisplayProgressPlugin(router, options) {
         this.name = 'DisplayProgressPlugin';
         // tslint:disable-next-line:ban-types
@@ -1155,7 +1168,7 @@ function state(name, url, options) {
         var declaration = {
             name: name,
             url: url,
-            component: (_a = (function (_super) {
+            component: (_a = /** @class */ (function (_super) {
                     __WEBPACK_IMPORTED_MODULE_0_tslib__["__extends"](Page, _super);
                     function Page() {
                         return _super !== null && _super.apply(this, arguments) || this;
@@ -1172,77 +1185,78 @@ function state(name, url, options) {
                 }(__WEBPACK_IMPORTED_MODULE_1_react__["Component"])),
                 _a.displayName = "Page(" + name + ")",
                 _a),
-            resolve: [],
         };
+        declaration.resolve = [];
         if (abstract) {
             declaration.abstract = abstract;
         }
         if (data) {
             declaration.data = data;
         }
-        if (store) {
-            declaration.resolve = [
-                {
-                    token: name + ":container",
-                    // tslint:disable-next-line space-before-function-paren
-                    resolveFn: function (transition) { return __WEBPACK_IMPORTED_MODULE_0_tslib__["__awaiter"](_this, void 0, void 0, function () {
-                        var selfStateGetter, path, self, i, parentContainerResolvable, parent_1, _i, _a, resolvable, parentContainer, currentContainer;
-                        return __WEBPACK_IMPORTED_MODULE_0_tslib__["__generator"](this, function (_b) {
-                            switch (_b.label) {
-                                case 0:
-                                    selfStateGetter = transition.to().$$state;
-                                    if (!selfStateGetter)
-                                        throw new Error('Cannot get internal state object');
-                                    path = selfStateGetter().path;
-                                    self = null;
-                                    for (i = 0; i < path.length; i++) {
-                                        if (path[i].name !== name) {
-                                            continue;
-                                        }
-                                        self = path[i];
-                                        break;
-                                    }
-                                    if (!self) {
-                                        throw new Error('Cannot find self state');
-                                    }
-                                    parentContainerResolvable = null;
-                                    for (parent_1 = self.parent; parent_1; parent_1 = parent_1.parent) {
-                                        for (_i = 0, _a = parent_1.resolvables; _i < _a.length; _i++) {
-                                            resolvable = _a[_i];
-                                            if (resolvable.token !== parent_1.name + ":container") {
-                                                continue;
-                                            }
-                                            parentContainerResolvable = resolvable;
-                                            break;
-                                        }
-                                    }
-                                    if (!parentContainerResolvable) return [3 /*break*/, 2];
-                                    return [4 /*yield*/, transition.injector().getAsync(parentContainerResolvable.token)];
-                                case 1:
-                                    parentContainer = _b.sent();
-                                    return [3 /*break*/, 3];
-                                case 2:
-                                    parentContainer = __WEBPACK_IMPORTED_MODULE_3__globals__["container"];
-                                    _b.label = 3;
-                                case 3:
-                                    currentContainer = new __WEBPACK_IMPORTED_MODULE_4_inversify__["Container"]();
-                                    currentContainer.parent = parentContainer;
-                                    currentContainer.bind(store).toSelf().inSingletonScope();
-                                    return [2 /*return*/, currentContainer];
+        declaration.resolve.push({
+            token: name + ":container",
+            // tslint:disable-next-line space-before-function-paren
+            resolveFn: function (transition) { return __WEBPACK_IMPORTED_MODULE_0_tslib__["__awaiter"](_this, void 0, void 0, function () {
+                var selfStateGetter, path, self, i, parentContainerResolvable, parent_1, _i, _a, resolvable, parentContainer, currentContainer;
+                return __WEBPACK_IMPORTED_MODULE_0_tslib__["__generator"](this, function (_b) {
+                    switch (_b.label) {
+                        case 0:
+                            selfStateGetter = transition.to().$$state;
+                            if (!selfStateGetter)
+                                throw new Error('Cannot get internal state object');
+                            path = selfStateGetter().path;
+                            self = null;
+                            for (i = 0; i < path.length; i++) {
+                                if (path[i].name !== name) {
+                                    continue;
+                                }
+                                self = path[i];
+                                break;
                             }
-                        });
-                    }); },
-                    deps: [__WEBPACK_IMPORTED_MODULE_2__uirouter_react__["Transition"]]
+                            if (!self) {
+                                throw new Error('Cannot find self state');
+                            }
+                            parentContainerResolvable = null;
+                            for (parent_1 = self.parent; parent_1; parent_1 = parent_1.parent) {
+                                for (_i = 0, _a = parent_1.resolvables; _i < _a.length; _i++) {
+                                    resolvable = _a[_i];
+                                    if (resolvable.token !== parent_1.name + ":container") {
+                                        continue;
+                                    }
+                                    parentContainerResolvable = resolvable;
+                                    break;
+                                }
+                            }
+                            if (!parentContainerResolvable) return [3 /*break*/, 2];
+                            return [4 /*yield*/, transition.injector().getAsync(parentContainerResolvable.token)];
+                        case 1:
+                            parentContainer = _b.sent();
+                            return [3 /*break*/, 3];
+                        case 2:
+                            parentContainer = __WEBPACK_IMPORTED_MODULE_3__globals__["container"];
+                            _b.label = 3;
+                        case 3:
+                            currentContainer = new __WEBPACK_IMPORTED_MODULE_4_inversify__["Container"]();
+                            currentContainer.parent = parentContainer;
+                            currentContainer.bind(__WEBPACK_IMPORTED_MODULE_2__uirouter_react__["Transition"]).toConstantValue(transition);
+                            if (store) {
+                                currentContainer.bind(store).toSelf().inSingletonScope();
+                            }
+                            return [2 /*return*/, currentContainer];
+                    }
+                });
+            }); },
+            deps: [__WEBPACK_IMPORTED_MODULE_2__uirouter_react__["Transition"]]
+        });
+        if (store) {
+            declaration.resolve.push({
+                token: name + ":store-enter",
+                resolveFn: function (container) {
+                    var storeInstance = container.get(store);
+                    return storeInstance.enter();
                 },
-                {
-                    token: name + ":store-enter",
-                    resolveFn: function (container) {
-                        var storeInstance = container.get(store);
-                        return storeInstance.enter();
-                    },
-                    deps: [name + ":container"]
-                }
-            ];
+                deps: [name + ":container"]
+            });
         }
         __WEBPACK_IMPORTED_MODULE_3__globals__["router"].stateRegistry.register(declaration);
         return target;
@@ -1351,7 +1365,7 @@ function buildHttpRequestBody(request) {
     formData.append('', JSON.stringify(result));
     return formData;
 }
-var JsonRpcClient = (function () {
+var JsonRpcClient = /** @class */ (function () {
     function JsonRpcClient(endpoint) {
         this.useJsonRpcConstant = false;
         this.requestFilters = [];
@@ -1364,9 +1378,9 @@ var JsonRpcClient = (function () {
             return __WEBPACK_IMPORTED_MODULE_0_tslib__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        headers = {};
+                        headers = new Headers();
                         if (this.authorization) {
-                            headers.Authorization = this.authorization;
+                            headers.append("Authorization", this.authorization);
                         }
                         httpRequestBody = buildHttpRequestBody(rpcRequest);
                         return [4 /*yield*/, fetch(this.endpoint, { method: 'POST', headers: headers, body: httpRequestBody })];
@@ -1529,7 +1543,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_35__;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_tslib__);
 
-var JsonRpcError = (function (_super) {
+var JsonRpcError = /** @class */ (function (_super) {
     __WEBPACK_IMPORTED_MODULE_0_tslib__["__extends"](JsonRpcError, _super);
     function JsonRpcError(code, message, data) {
         var _this = _super.call(this, message) || this;
@@ -1615,7 +1629,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ValidationState; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__validation_level__ = __webpack_require__(8);
 
-var ValidationState = (function () {
+var ValidationState = /** @class */ (function () {
     function ValidationState(state) {
         if (!state) {
             state = {};

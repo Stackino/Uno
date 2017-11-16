@@ -60,7 +60,7 @@ function buildHttpRequestBody(request) {
     formData.append('', JSON.stringify(result));
     return formData;
 }
-var JsonRpcClient = (function () {
+var JsonRpcClient = /** @class */ (function () {
     function JsonRpcClient(endpoint) {
         this.useJsonRpcConstant = false;
         this.requestFilters = [];
@@ -73,9 +73,9 @@ var JsonRpcClient = (function () {
             return tslib_1.__generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        headers = {};
+                        headers = new Headers();
                         if (this.authorization) {
-                            headers.Authorization = this.authorization;
+                            headers.append("Authorization", this.authorization);
                         }
                         httpRequestBody = buildHttpRequestBody(rpcRequest);
                         return [4 /*yield*/, fetch(this.endpoint, { method: 'POST', headers: headers, body: httpRequestBody })];

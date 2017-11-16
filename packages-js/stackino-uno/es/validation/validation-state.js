@@ -1,5 +1,5 @@
 import { ValidationLevel } from './validation-level';
-var ValidationState = (function () {
+var ValidationState = /** @class */ (function () {
     function ValidationState(state) {
         if (!state) {
             state = {};

@@ -1,5 +1,5 @@
 import * as tslib_1 from "tslib";
-var JsonRpcError = (function (_super) {
+var JsonRpcError = /** @class */ (function (_super) {
     tslib_1.__extends(JsonRpcError, _super);
     function JsonRpcError(code, message, data) {
         var _this = _super.call(this, message) || this;

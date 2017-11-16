@@ -1,7 +1,7 @@
 var topbarImpl = require('topbar');
 var depth = 0;
 // topbar
-var TopBar = (function () {
+var TopBar = /** @class */ (function () {
     function TopBar() {
     }
     TopBar.hideInternal = function () {

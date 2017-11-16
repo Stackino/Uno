@@ -1,5 +1,5 @@
 import * as tslib_1 from "tslib";
-var Page = (function (_super) {
+var Page = /** @class */ (function (_super) {
     tslib_1.__extends(Page, _super);
     function Page(data, number, count) {
         var _this = _super.call(this) || this;

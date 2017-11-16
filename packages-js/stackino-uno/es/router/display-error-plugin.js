@@ -1,6 +1,6 @@
 import { Rejection, RejectType } from '@uirouter/core';
 import { Bsod } from '../ui/bsod';
-var DisplayErrorPlugin = (function () {
+var DisplayErrorPlugin = /** @class */ (function () {
     function DisplayErrorPlugin(router, options) {
         this.name = 'DisplayErrorPlugin';
         // tslint:disable-next-line:ban-types

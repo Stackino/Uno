@@ -1,7 +1,7 @@
 import * as classnames from 'classnames';
 var styles = require('./index.scss');
 var container;
-var Bsod = (function () {
+var Bsod = /** @class */ (function () {
     function Bsod() {
     }
     Bsod.show = function (title, error, options) {
