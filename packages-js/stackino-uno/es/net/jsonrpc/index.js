@@ -54,15 +54,17 @@ function attachFiles(formData, key, data) {
             throw new Error("Undefined behavior for data type '" + type + "' and key '" + key + "'");
     }
 }
-function buildHttpRequestBody(request) {
+function buildHttpRequestBody(request, formRequestKey) {
     var formData = new FormData();
     var result = attachFiles(formData, null, request);
-    formData.append('', JSON.stringify(result));
+    formData.append(formRequestKey, JSON.stringify(result));
     return formData;
 }
 var JsonRpcClient = /** @class */ (function () {
     function JsonRpcClient(endpoint) {
         this.useJsonRpcConstant = false;
+        // Used to be empty string, however iOS doesn't send `FormData` entries with an empty string as key
+        this.formRequestKey = '~request~';
         this.requestFilters = [];
         this.responseFilters = [];
         this.endpoint = endpoint;
@@ -77,7 +79,7 @@ var JsonRpcClient = /** @class */ (function () {
                         if (this.authorization) {
                             headers.append("Authorization", this.authorization);
                         }
-                        httpRequestBody = buildHttpRequestBody(rpcRequest);
+                        httpRequestBody = buildHttpRequestBody(rpcRequest, this.formRequestKey);
                         return [4 /*yield*/, fetch(this.endpoint, { method: 'POST', headers: headers, body: httpRequestBody })];
                     case 1:
                         httpResponse = _a.sent();

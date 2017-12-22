@@ -7,7 +7,7 @@
 		exports["StackinoUno"] = factory(require("tslib"), require("@uirouter/react"), require("inversify"), require("react"), require("@uirouter/core"), require("classnames"), require("topbar"), require("inversify-react"), require("moment"), require("prop-types"));
 	else
 		root["StackinoUno"] = factory(root[undefined], root[undefined], root[undefined], root[undefined], root[undefined], root[undefined], root[undefined], root[undefined], root[undefined], root[undefined]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_22__, __WEBPACK_EXTERNAL_MODULE_23__, __WEBPACK_EXTERNAL_MODULE_30__, __WEBPACK_EXTERNAL_MODULE_32__, __WEBPACK_EXTERNAL_MODULE_37__, __WEBPACK_EXTERNAL_MODULE_40__) {
+})(typeof self !== 'undefined' ? self : this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_22__, __WEBPACK_EXTERNAL_MODULE_23__, __WEBPACK_EXTERNAL_MODULE_30__, __WEBPACK_EXTERNAL_MODULE_32__, __WEBPACK_EXTERNAL_MODULE_37__, __WEBPACK_EXTERNAL_MODULE_40__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -765,7 +765,7 @@ module.exports = function(list, options) {
 
 	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
 	// tags it will allow on a page
-	if (!options.singleton) options.singleton = isOldIE();
+	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
 
 	// By default, add <style> tags to the <head> element
 	if (!options.insertInto) options.insertInto = "head";
@@ -1415,15 +1415,17 @@ function attachFiles(formData, key, data) {
             throw new Error("Undefined behavior for data type '" + type + "' and key '" + key + "'");
     }
 }
-function buildHttpRequestBody(request) {
+function buildHttpRequestBody(request, formRequestKey) {
     var formData = new FormData();
     var result = attachFiles(formData, null, request);
-    formData.append('', JSON.stringify(result));
+    formData.append(formRequestKey, JSON.stringify(result));
     return formData;
 }
 var JsonRpcClient = /** @class */ (function () {
     function JsonRpcClient(endpoint) {
         this.useJsonRpcConstant = false;
+        // Used to be empty string, however iOS doesn't send `FormData` entries with an empty string as key
+        this.formRequestKey = '~request~';
         this.requestFilters = [];
         this.responseFilters = [];
         this.endpoint = endpoint;
@@ -1438,7 +1440,7 @@ var JsonRpcClient = /** @class */ (function () {
                         if (this.authorization) {
                             headers.append("Authorization", this.authorization);
                         }
-                        httpRequestBody = buildHttpRequestBody(rpcRequest);
+                        httpRequestBody = buildHttpRequestBody(rpcRequest, this.formRequestKey);
                         return [4 /*yield*/, fetch(this.endpoint, { method: 'POST', headers: headers, body: httpRequestBody })];
                     case 1:
                         httpResponse = _a.sent();

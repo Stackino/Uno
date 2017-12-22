@@ -23,6 +23,7 @@ export declare class JsonRpcClient {
     constructor(endpoint: string);
     readonly endpoint: string;
     useJsonRpcConstant: boolean;
+    formRequestKey: string;
     authorization: string;
     readonly requestFilters: RequestFilter[];
     readonly responseFilters: ResponseFilter[];

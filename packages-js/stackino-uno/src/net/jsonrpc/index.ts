@@ -81,12 +81,12 @@ function attachFiles(formData: FormData, key: string | null, data: any): any {
 	}
 }
 
-function buildHttpRequestBody(request: JsonRpcRequest) {
+function buildHttpRequestBody(request: JsonRpcRequest, formRequestKey: string) {
 	const formData = new FormData();
 
 	const result = attachFiles(formData, null, request);
 
-	formData.append('', JSON.stringify(result));
+	formData.append(formRequestKey, JSON.stringify(result));
 
 	return formData;
 }
@@ -101,6 +101,8 @@ export class JsonRpcClient {
 
 	public readonly endpoint: string;
 	public useJsonRpcConstant: boolean = false;
+	// Used to be empty string, however iOS doesn't send `FormData` entries with an empty string as key
+	public formRequestKey: string = '~request~';
 
 	public authorization: string;
 
@@ -113,7 +115,7 @@ export class JsonRpcClient {
 			headers.append("Authorization", this.authorization);
 		}
 
-		const httpRequestBody = buildHttpRequestBody(rpcRequest);
+		const httpRequestBody = buildHttpRequestBody(rpcRequest, this.formRequestKey);
 
 		const httpResponse = await fetch(this.endpoint, { method: 'POST', headers, body: httpRequestBody });
 		if (!httpResponse.ok) {
