@@ -28,13 +28,13 @@ export function state<TStore extends Store, TComponentProps>(name: string, url: 
 		const declaration: ReactStateDeclaration = {
 			name,
 			url,
-			component: class Page extends React.Component<{ resolves: any }, object> {
+			component: class Page extends React.Component<{ [key: string]: any }, object> {
 				static displayName = `Page(${name})`;
 
 				render() {
 					const component = <Component />;
 
-					const container = this.props.resolves[`${name}:container`];
+					const container = this.props[`${name}:container`];
 
 					if (!container) {
 						return component;

@@ -1,4 +1,4 @@
-import { UIRouter, UIRouterPluginBase } from '@uirouter/core';
+import { UIRouterReact, UIRouterPluginBase } from '@uirouter/react';
 export interface DisplayErrorHandler {
     show(title: string, error: Error | string): void;
     hide(): void;
@@ -7,9 +7,9 @@ export interface DisplayErrorPluginOptions {
     handler: DisplayErrorHandler;
 }
 export declare class DisplayErrorPlugin implements UIRouterPluginBase {
-    constructor(router: UIRouter, options: DisplayErrorPluginOptions);
+    constructor(router: UIRouterReact, options: DisplayErrorPluginOptions);
     readonly name: string;
     private disposers;
-    dispose(router: UIRouter): void;
+    dispose(router: UIRouterReact): void;
 }
 export default DisplayErrorPlugin;

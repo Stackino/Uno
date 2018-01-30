@@ -1,4 +1,4 @@
-import { Rejection, RejectType } from '@uirouter/core';
+import { Rejection, RejectType } from '@uirouter/react';
 import { Bsod } from '../ui/bsod';
 var DisplayErrorPlugin = /** @class */ (function () {
     function DisplayErrorPlugin(router, options) {

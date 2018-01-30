@@ -28,11 +28,6 @@ module.exports = {
     },
 
     externals: {
-        '@uirouter/core': {
-            commonjs: '@uirouter/core',
-            commonjs2: '@uirouter/core',
-            amd: '@uirouter/core'
-        },
         '@uirouter/react': {
             commonjs: '@uirouter/react',
             commonjs2: '@uirouter/react',

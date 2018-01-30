@@ -1,4 +1,4 @@
-﻿import { Rejection, RejectType, UIRouter, UIRouterPluginBase } from '@uirouter/core';
+﻿import { Rejection, RejectType, UIRouterReact, UIRouterPluginBase } from '@uirouter/react';
 import { Bsod } from '../ui/bsod';
 
 export interface DisplayErrorHandler {
@@ -11,7 +11,7 @@ export interface DisplayErrorPluginOptions {
 }
 
 export class DisplayErrorPlugin implements UIRouterPluginBase {
-	constructor(router: UIRouter, options: DisplayErrorPluginOptions) {
+	constructor(router: UIRouterReact, options: DisplayErrorPluginOptions) {
 		const handler = (options && options.handler) || Bsod;
 
 		router.stateService.defaultErrorHandler(error => {
@@ -19,7 +19,7 @@ export class DisplayErrorPlugin implements UIRouterPluginBase {
 				if (error.type === RejectType.IGNORED || error.type === RejectType.SUPERSEDED) {
 					return;
 				}
-
+				
 				handler.show('Transition error', error.detail);
 			} else {
 				handler.show('Transition error', error);
@@ -39,7 +39,7 @@ export class DisplayErrorPlugin implements UIRouterPluginBase {
 	// tslint:disable-next-line:ban-types
 	private disposers: Function[] = [];
 
-	dispose(router: UIRouter) {
+	dispose(router: UIRouterReact) {
 		if (this.disposers) {
 			for (const disposer of this.disposers) {
 				disposer();

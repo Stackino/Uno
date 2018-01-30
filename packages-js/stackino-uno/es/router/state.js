@@ -22,7 +22,7 @@ export function state(name, url, options) {
                     }
                     Page.prototype.render = function () {
                         var component = React.createElement(Component, null);
-                        var container = this.props.resolves[name + ":container"];
+                        var container = this.props[name + ":container"];
                         if (!container) {
                             return component;
                         }

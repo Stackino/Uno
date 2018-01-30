@@ -1,4 +1,4 @@
-﻿import { Transition, UIRouter, UIRouterPluginBase } from '@uirouter/core';
+﻿import { Transition, UIRouterReact, UIRouterPluginBase } from '@uirouter/react';
 import { TopBar } from '../ui/topbar';
 
 export interface DisplayProgressHandler {
@@ -11,7 +11,7 @@ export interface DisplayProgressPluginOptions {
 }
 
 export class DisplayProgressPlugin implements UIRouterPluginBase {
-	constructor(router: UIRouter, options: DisplayProgressPluginOptions) {
+	constructor(router: UIRouterReact, options: DisplayProgressPluginOptions) {
 		const { transitionService } = router;
 
 		const handler = (options && options.handler) || TopBar;
@@ -32,7 +32,7 @@ export class DisplayProgressPlugin implements UIRouterPluginBase {
 	// tslint:disable-next-line:ban-types
 	private disposers: Function[] = [];
 
-	dispose(router: UIRouter) {
+	dispose(router: UIRouterReact) {
 		if (this.disposers) {
 			for (const disposer of this.disposers) {
 				disposer();
