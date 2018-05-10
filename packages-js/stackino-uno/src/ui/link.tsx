@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { TransitionOptions, UIRouterReact, UISref, UISrefActive } from '@uirouter/react';
+import { TransitionOptions, UISref, UISrefActive, UIRouterConsumer } from '@uirouter/react';
 
 export interface LinkComponentProps {
 	id?: string;
@@ -55,44 +55,39 @@ export class Link extends React.Component<LinkProps, object> {
 		listItemClassName: PropTypes.string
 	};
 
-	static contextTypes: React.ValidationMap<any> = {
-		router: PropTypes.object,
-	};
-
-	context: {
-		router: UIRouterReact;
-	};
-
 	render() {
 		const { component, to, params, options, activeClassName, exact, id, className, style, children, isListItem, listItemClassName } = this.props;
 
-		const href = this.context.router.stateService.href(to, params || {}, options);
 		const Component = component || DefaultLinkComponent;
 
-		const link = (
-			<UISref to={to} params={params} options={options}>
-				{isListItem ?
-					<li className={listItemClassName}>
-						<DefaultLinkComponent href={href} id={id} className={className} style={style}>
+		return (<UIRouterConsumer>{router => {
+			const href = router.stateService.href(to, params || {}, options);
+
+			const link = (
+				<UISref to={to} params={params} options={options}>
+					{isListItem ?
+						<li className={listItemClassName}>
+							<DefaultLinkComponent href={href} id={id} className={className} style={style}>
+								{children}
+							</DefaultLinkComponent>
+						</li>
+					:
+						<Component href={href} id={id} className={className} style={style}>
 							{children}
-						</DefaultLinkComponent>
-					</li>
-				:
-					<Component href={href} id={id} className={className} style={style}>
-						{children}
-					</Component>
-				}
-			</UISref>
-		);
-
-		if (activeClassName) {
-			return (
-				<UISrefActive class={activeClassName} exact={exact}>
-					{link}
-				</UISrefActive>
+						</Component>
+					}
+				</UISref>
 			);
-		}
 
-		return link;
+			if (activeClassName) {
+				return (
+					<UISrefActive class={activeClassName} exact={exact}>
+						{link}
+					</UISrefActive>
+				);
+			}
+
+			return link;
+		}}</UIRouterConsumer>);
 	}
 }

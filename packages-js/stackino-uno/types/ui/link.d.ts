@@ -1,7 +1,7 @@
 /// <reference types="react" />
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { TransitionOptions, UIRouterReact } from '@uirouter/react';
+import { TransitionOptions } from '@uirouter/react';
 export interface LinkComponentProps {
     id?: string;
     className?: string;
@@ -37,10 +37,6 @@ export declare class Link extends React.Component<LinkProps, object> {
         style: PropTypes.Requireable<any>;
         isListItem: PropTypes.Requireable<any>;
         listItemClassName: PropTypes.Requireable<any>;
-    };
-    static contextTypes: React.ValidationMap<any>;
-    context: {
-        router: UIRouterReact;
     };
     render(): JSX.Element;
 }
