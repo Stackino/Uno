@@ -1,5 +1,5 @@
 export declare class TopBar {
-    private static hideInternal();
+    private static hideInternal;
     static show(): typeof TopBar.hide;
     static hide(): void;
 }

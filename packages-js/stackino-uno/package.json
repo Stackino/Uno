@@ -10,7 +10,9 @@
     "dev": "n-clean ./dist ./es && webpack --mode development --output-pathinfo --watch",
     "prod": "n-clean ./dist ./es && tsc && n-copy --source ./src --destination ./es **/*.scss && webpack --mode production",
     "prepublishOnly": "npm run prod",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "check-updates": "ncu --reject mobx",
+    "upgrade": "ncu -u -a --reject mobx"
   },
   "repository": {
     "type": "git",
@@ -23,35 +25,35 @@
   },
   "homepage": "https://github.com/Stackino/Uno#readme",
   "devDependencies": {
-    "@types/classnames": "^2.2.3",
+    "@types/classnames": "^2.2.4",
     "@types/prop-types": "^15.5.3",
-    "@types/react": "^16.3.14",
-    "@types/react-dom": "^16.0.5",
+    "@types/react": "^16.3.17",
+    "@types/react-dom": "^16.0.6",
     "@types/webpack-env": "^1.13.6",
     "css-loader": "^0.28.11",
     "node-sass": "^4.9.0",
     "npm-build-tools": "^2.2.5",
     "reflect-metadata": "^0.1.12",
-    "sass-loader": "^7.0.1",
+    "sass-loader": "^7.0.3",
     "style-loader": "^0.21.0",
-    "ts-loader": "^4.3.0",
-    "typescript": "^2.8.3",
-    "webpack": "^4.8.3",
-    "webpack-cli": "^2.1.3"
+    "ts-loader": "^4.4.1",
+    "typescript": "^2.9.1",
+    "webpack": "^4.12.0",
+    "webpack-cli": "^3.0.3"
   },
   "dependencies": {
-    "@uirouter/react": "^0.8.0",
-    "classnames": "^2.2.5",
+    "@uirouter/react": "^0.8.2",
+    "classnames": "^2.2.6",
     "core-decorators": "^0.20.0",
     "inversify": "^4.13.0",
     "inversify-react": "^0.2.6",
-    "mobx": "^4.2.1",
-    "mobx-react": "^5.1.2",
-    "moment": "^2.22.1",
+    "mobx": "^4.3.1",
+    "mobx-react": "^5.2.3",
+    "moment": "^2.22.2",
     "prop-types": "^15.6.1",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
     "topbar": "^0.1.3",
-    "tslib": "^1.9.1"
+    "tslib": "^1.9.2"
   }
 }

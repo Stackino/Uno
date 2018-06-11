@@ -55,6 +55,16 @@ export class Bsod {
 
 					containerElement.appendChild(stackPreElement);
 				}
+				if ((error as any).data) {
+					const stackPreElement = document.createElement('pre');
+					stackPreElement.className = classnames(styles.data, 'bsod-data');
+
+					const stackCodeElement = document.createElement('code');
+					stackCodeElement.innerText = (error as any).data;
+					stackPreElement.appendChild(stackCodeElement);
+
+					containerElement.appendChild(stackPreElement);
+				}
 			}
 		}
 

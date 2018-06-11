@@ -43,6 +43,14 @@ var Bsod = /** @class */ (function () {
                     stackPreElement.appendChild(stackCodeElement);
                     containerElement.appendChild(stackPreElement);
                 }
+                if (error.data) {
+                    var stackPreElement = document.createElement('pre');
+                    stackPreElement.className = classnames(styles.data, 'bsod-data');
+                    var stackCodeElement = document.createElement('code');
+                    stackCodeElement.innerText = error.data;
+                    stackPreElement.appendChild(stackCodeElement);
+                    containerElement.appendChild(stackPreElement);
+                }
             }
         }
         // show

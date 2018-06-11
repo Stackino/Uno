@@ -11,6 +11,7 @@ export function state(name, url, options) {
     var _this = this;
     var _a = options || defaultOptions, store = _a.store, data = _a.data, abstract = _a.abstract;
     return function (target) {
+        var _a;
         var Component = target;
         var declaration = {
             name: name,
@@ -107,7 +108,6 @@ export function state(name, url, options) {
         }
         globals.router.stateRegistry.register(declaration);
         return target;
-        var _a;
     };
 }
 export default state;
