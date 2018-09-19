@@ -11,12 +11,12 @@ export interface BsodOptions {
 let container: HTMLDivElement;
 
 export class Bsod {
-	static show(title: string, error: Error | string, options?: BsodOptions) {
 
-		Bsod.hide();
+	static styles: any = styles;
 
+	static template: (title: string, error: Error | string, options?: BsodOptions) => HTMLDivElement = (title: string, error: Error | string, options?: BsodOptions) => {
 		// container
-		const containerElement = container = document.createElement('div');
+		const containerElement = document.createElement('div');
 		if (options && options.id) {
 			containerElement.id = options.id;
 		}
@@ -68,8 +68,16 @@ export class Bsod {
 			}
 		}
 
+		return containerElement;
+	};
+
+	static show(title: string, error: Error | string, options?: BsodOptions) {
+		Bsod.hide();
+
+		container = Bsod.template(title, error, options);
+
 		// show
-		document.body.appendChild(containerElement);
+		document.body.appendChild(container);
 	}
 
 	static hide() {
