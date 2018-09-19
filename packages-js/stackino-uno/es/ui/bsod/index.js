@@ -6,8 +6,20 @@ var Bsod = /** @class */ (function () {
     }
     Bsod.show = function (title, error, options) {
         Bsod.hide();
+        container = Bsod.template(title, error, options);
+        // show
+        document.body.appendChild(container);
+    };
+    Bsod.hide = function () {
+        if (!container) {
+            return;
+        }
+        container.remove();
+    };
+    Bsod.styles = styles;
+    Bsod.template = function (title, error, options) {
         // container
-        var containerElement = container = document.createElement('div');
+        var containerElement = document.createElement('div');
         if (options && options.id) {
             containerElement.id = options.id;
         }
@@ -53,14 +65,7 @@ var Bsod = /** @class */ (function () {
                 }
             }
         }
-        // show
-        document.body.appendChild(containerElement);
-    };
-    Bsod.hide = function () {
-        if (!container) {
-            return;
-        }
-        container.remove();
+        return containerElement;
     };
     return Bsod;
 }());
