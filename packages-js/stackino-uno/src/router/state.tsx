@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ReactStateDeclaration, Resolvable, StateObject, Transition } from '@uirouter/react';
+import { ReactStateDeclaration, ReactViewDeclaration, Resolvable, StateObject, Transition } from '@uirouter/react';
 import * as globals from '../globals';
 import { Container } from 'inversify';
 import { Provider } from 'inversify-react';
@@ -12,6 +12,7 @@ export interface Store {
 export interface StateOptions<TStore> {
 	store?: Newable<TStore>;
 	data?: any;
+	views?: { [name: string]: React.ComponentClass };
 	abstract?: boolean;
 }
 
@@ -20,34 +21,70 @@ const defaultOptions: StateOptions<any> = {
 };
 
 export function state<TStore extends Store, TComponentProps>(name: string, url: string, options?: StateOptions<TStore>): (<TComponent extends React.ComponentClass<TComponentProps>>(target: TComponent) => TComponent) {
-	const { store, data, abstract } = options || defaultOptions;
+	const { store, data, views, abstract } = options || defaultOptions;
 
 	return (target: any) => {
-		const Component: React.ComponentClass = target;
+		const PageComponent: React.ComponentClass = target;
+		const Page = class Page extends React.Component<{ [key: string]: any }, object> {
+			static displayName = `Page(${name})`;
+
+			render() {
+				const component = <PageComponent />;
+
+				const container = this.props[`${name}:container`];
+
+				if (!container) {
+					return component;
+				}
+
+				return (
+					<Provider container={container} standalone>
+						{component}
+					</Provider>
+				);
+			}
+		};
 
 		const declaration: ReactStateDeclaration = {
 			name,
 			url,
-			component: class Page extends React.Component<{ [key: string]: any }, object> {
-				static displayName = `Page(${name})`;
-
-				render() {
-					const component = <Component />;
-
-					const container = this.props[`${name}:container`];
-
-					if (!container) {
-						return component;
-					}
-
-					return (
-						<Provider container={container} standalone>
-							{component}
-						</Provider>
-					);
-				}
-			},
 		};
+		if (!views) {
+			declaration.component = Page;
+		} else {
+			declaration.views = {
+				'$default': Page as ReactViewDeclaration,
+			};
+			for (const viewName in views) {
+				if (!views.hasOwnProperty(viewName)) {
+					continue;
+				}
+
+				const ViewComponent = views[viewName];
+
+				const PageView = class PageView extends React.Component<{ [key: string]: any }, object> {
+					static displayName = `PageView(${name}:${viewName})`;
+		
+					render() {
+						const component = <ViewComponent />;
+		
+						const container = this.props[`${name}:container`];
+		
+						if (!container) {
+							return component;
+						}
+		
+						return (
+							<Provider container={container} standalone>
+								{component}
+							</Provider>
+						);
+					}
+				};
+
+				declaration.views[viewName] = PageView as ReactViewDeclaration;
+			}
+		}
 		declaration.resolve = [];
 
 		if (abstract) {
