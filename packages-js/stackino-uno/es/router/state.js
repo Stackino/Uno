@@ -9,31 +9,66 @@ var defaultOptions = {
 };
 export function state(name, url, options) {
     var _this = this;
-    var _a = options || defaultOptions, store = _a.store, data = _a.data, abstract = _a.abstract;
+    var _a = options || defaultOptions, store = _a.store, data = _a.data, views = _a.views, abstract = _a.abstract;
     return function (target) {
-        var _a;
-        var Component = target;
+        var _a, _b;
+        var PageComponent = target;
+        var Page = (_a = /** @class */ (function (_super) {
+                tslib_1.__extends(Page, _super);
+                function Page() {
+                    return _super !== null && _super.apply(this, arguments) || this;
+                }
+                Page.prototype.render = function () {
+                    var component = React.createElement(PageComponent, null);
+                    var container = this.props[name + ":container"];
+                    if (!container) {
+                        return component;
+                    }
+                    return (React.createElement(Provider, { container: container, standalone: true }, component));
+                };
+                return Page;
+            }(React.Component)),
+            _a.displayName = "Page(" + name + ")",
+            _a);
         var declaration = {
             name: name,
             url: url,
-            component: (_a = /** @class */ (function (_super) {
-                    tslib_1.__extends(Page, _super);
-                    function Page() {
-                        return _super !== null && _super.apply(this, arguments) || this;
-                    }
-                    Page.prototype.render = function () {
-                        var component = React.createElement(Component, null);
-                        var container = this.props[name + ":container"];
-                        if (!container) {
-                            return component;
-                        }
-                        return (React.createElement(Provider, { container: container, standalone: true }, component));
-                    };
-                    return Page;
-                }(React.Component)),
-                _a.displayName = "Page(" + name + ")",
-                _a),
         };
+        if (!views) {
+            declaration.component = Page;
+        }
+        else {
+            declaration.views = {
+                '$default': Page,
+            };
+            var _loop_1 = function (viewName) {
+                if (!views.hasOwnProperty(viewName)) {
+                    return "continue";
+                }
+                var ViewComponent = views[viewName];
+                var PageView = (_b = /** @class */ (function (_super) {
+                        tslib_1.__extends(PageView, _super);
+                        function PageView() {
+                            return _super !== null && _super.apply(this, arguments) || this;
+                        }
+                        PageView.prototype.render = function () {
+                            var component = React.createElement(ViewComponent, null);
+                            var container = this.props[name + ":container"];
+                            if (!container) {
+                                return component;
+                            }
+                            return (React.createElement(Provider, { container: container, standalone: true }, component));
+                        };
+                        return PageView;
+                    }(React.Component)),
+                    _b.displayName = "PageView(" + name + ":" + viewName + ")",
+                    _b);
+                declaration.views[viewName] = PageView;
+            };
+            for (var viewName in views) {
+                _loop_1(viewName);
+            }
+        }
         declaration.resolve = [];
         if (abstract) {
             declaration.abstract = abstract;

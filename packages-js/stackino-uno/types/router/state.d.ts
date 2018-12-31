@@ -6,6 +6,9 @@ export interface Store {
 export interface StateOptions<TStore> {
     store?: Newable<TStore>;
     data?: any;
+    views?: {
+        [name: string]: React.ComponentClass;
+    };
     abstract?: boolean;
 }
 export declare function state<TStore extends Store, TComponentProps>(name: string, url: string, options?: StateOptions<TStore>): (<TComponent extends React.ComponentClass<TComponentProps>>(target: TComponent) => TComponent);
