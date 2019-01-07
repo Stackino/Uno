@@ -1,6 +1,6 @@
 {
   "name": "@stackino/uno",
-  "version": "0.1.24",
+  "version": "0.1.25",
   "description": "Application framework formed from popular packages.",
   "main": "./dist/index.js",
   "module": "./es/index.js",
