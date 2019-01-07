@@ -23,7 +23,7 @@ module.exports = {
     module: {
         rules: [
             { test: /\.(ts|tsx)$/, use: { loader: 'ts-loader', options: { compilerOptions: { declarationDir: './types' } } } },
-            { test: /\.scss$/, use: [ 'style-loader', 'css-loader', 'sass-loader' ] }
+            { test: /\.scss$/, use: [ 'style-loader', { loader: 'css-loader', options: { modules: 'global' } }, 'sass-loader' ] }
         ]
     },
 
