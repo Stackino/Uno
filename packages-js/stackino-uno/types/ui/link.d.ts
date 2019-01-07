@@ -26,16 +26,16 @@ export interface LinkProps {
 export declare class Link extends React.Component<LinkProps, object> {
     static propTypes: {
         component: PropTypes.Requireable<any>;
-        to: PropTypes.Validator<any>;
-        params: PropTypes.Requireable<any>;
-        options: PropTypes.Requireable<any>;
-        activeClassName: PropTypes.Requireable<any>;
-        exact: PropTypes.Requireable<any>;
-        id: PropTypes.Requireable<any>;
-        className: PropTypes.Requireable<any>;
-        style: PropTypes.Requireable<any>;
-        isListItem: PropTypes.Requireable<any>;
-        listItemClassName: PropTypes.Requireable<any>;
+        to: PropTypes.Validator<string>;
+        params: PropTypes.Requireable<object>;
+        options: PropTypes.Requireable<object>;
+        activeClassName: PropTypes.Requireable<string>;
+        exact: PropTypes.Requireable<boolean>;
+        id: PropTypes.Requireable<string>;
+        className: PropTypes.Requireable<string>;
+        style: PropTypes.Requireable<object>;
+        isListItem: PropTypes.Requireable<boolean>;
+        listItemClassName: PropTypes.Requireable<string>;
     };
     render(): JSX.Element;
 }

@@ -8,7 +8,7 @@ export interface DisplayErrorPluginOptions {
 }
 export declare class DisplayErrorPlugin implements UIRouterPluginBase {
     constructor(router: UIRouterReact, options: DisplayErrorPluginOptions);
-    readonly name: string;
+    readonly name = "DisplayErrorPlugin";
     private disposers;
     dispose(router: UIRouterReact): void;
 }

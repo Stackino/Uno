@@ -8,7 +8,7 @@ export interface DisplayProgressPluginOptions {
 }
 export declare class DisplayProgressPlugin implements UIRouterPluginBase {
     constructor(router: UIRouterReact, options: DisplayProgressPluginOptions);
-    readonly name: string;
+    readonly name = "DisplayProgressPlugin";
     private disposers;
     dispose(router: UIRouterReact): void;
 }
